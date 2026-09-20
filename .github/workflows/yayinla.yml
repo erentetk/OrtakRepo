@@ -56,7 +56,7 @@ jobs:
       - name: GitHub Packages'a yayinla
         run: |
           dotnet nuget push "nupkg/*.nupkg" \
-            --api-key "${{ secrets.GITHUB_TOKEN }}" \
+            --api-key "${{ secrets.NUGET_PAT }}" \
             --source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" \
             --skip-duplicate
 

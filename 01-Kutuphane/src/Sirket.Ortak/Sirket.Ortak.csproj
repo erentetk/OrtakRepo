@@ -18,7 +18,8 @@
       ve KULLANICI_ADIN kismini kendi hesabinla degistir. Bu sayede paket,
       GitHub'da repo sayfasina bagli gorunur.
     -->
-    <!-- <RepositoryUrl>https://github.com/KULLANICI_ADIN/Sirket.Ortak</RepositoryUrl> -->
+    <RepositoryUrl>https://github.com/erentetk/OrtakRepo</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
 
     <!--
       Bu surumde NE DEGISTIGINI yazdigin alan. Description paketin ne

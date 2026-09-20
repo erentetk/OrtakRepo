@@ -6,9 +6,10 @@ namespace Sirket.Ortak
     /// gibi paylasilan siniflarin yeri olacak.
     /// </summary>
     public static class Hesaplama
-    {
+    {   
+        /// <summary>(1.0.0 ile eklendi)</summary>
         public static double Topla(double a, double b) => a + b;
-
+        /// <summary>(1.0.0 ile eklendi)</summary>
         public static double Cikar(double a, double b) => a - b;
 
         /// <summary>(1.1.0 ile eklendi)</summary>
