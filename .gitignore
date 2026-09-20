@@ -1,0 +1,6 @@
+bin/
+obj/
+nupkg/
+LocalFeed/*.nupkg
+.vs/
+*.user

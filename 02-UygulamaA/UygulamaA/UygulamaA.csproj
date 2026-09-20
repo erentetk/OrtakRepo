@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    ESKI uygulama. Henuz .NET 10'a gecmedi, net5.0 hedefliyor.
+    Kutuphaneyi paketten cekiyor; paketin icindeki lib/net5.0
+    klasorundeki dll'i alacak.
+  -->
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <CheckEolTargetFramework>false</CheckEolTargetFramework>
+    <RootNamespace>UygulamaA</RootNamespace>
+
+    <!-- Makinede .NET 5 RUNTIME kurulu olmasa bile uygulamayi
+         kurulu en yeni major surum uzerinde calistirir.
+         Sende sadece .NET 9 ve 10 runtime var, bu satir olmadan
+         "framework not found" hatasi alirsin. -->
+    <RollForward>LatestMajor</RollForward>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- ==========  ISTE OLAY BURADA  ==========
+         ProjectReference DEGIL, PackageReference.
+         Kutuphanenin kaynak koduyla hicbir bagi yok;
+         paketi ..\LocalFeed klasorunden nuget.org'dan
+         cekermis gibi cekiyor. -->
+    <PackageReference Include="Sirket.Ortak" Version="1.0.0" />
+  </ItemGroup>
+
+</Project>

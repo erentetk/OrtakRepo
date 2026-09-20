@@ -1,0 +1,68 @@
+# Sirket.Ortak paketini GitHub Packages'a yayinlar.
+#
+# Tetikleyici: 'v' ile baslayan bir tag push edildiginde.
+#   git tag v1.3.0
+#   git push origin v1.3.0
+#
+# Surum numarasi TAG'DEN gelir, Directory.Build.props'taki
+# <Version> degeri gecersiz kilinir. Boylece elle surum
+# artirma isi tamamen ortadan kalkar.
+
+name: Paketle ve yayinla
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:      # Actions sekmesinden elle de calistirabilirsin
+
+jobs:
+  yayinla:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write      # GITHUB_TOKEN'in paket yazma izni
+
+    steps:
+      - name: Kodu al
+        uses: actions/checkout@v4
+
+      - name: .NET SDK kur
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Surumu belirle
+        id: surum
+        run: |
+          if [ "$GITHUB_REF_TYPE" = "tag" ]; then
+            # v1.3.0 -> 1.3.0
+            SURUM="${GITHUB_REF_NAME#v}"
+          else
+            # elle calistirildiysa on-surum uret
+            SURUM="0.0.0-manuel.${GITHUB_RUN_NUMBER}"
+          fi
+          echo "surum=$SURUM" >> "$GITHUB_OUTPUT"
+          echo "Paketlenecek surum: $SURUM"
+
+      - name: Paketle
+        run: |
+          dotnet pack 01-Kutuphane/src/Sirket.Ortak/Sirket.Ortak.csproj \
+            --configuration Release \
+            --output nupkg \
+            -p:Version=${{ steps.surum.outputs.surum }}
+
+      - name: GitHub Packages'a yayinla
+        run: |
+          dotnet nuget push "nupkg/*.nupkg" \
+            --api-key "${{ secrets.GITHUB_TOKEN }}" \
+            --source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" \
+            --skip-duplicate
+
+      - name: Paketi artifact olarak sakla
+        uses: actions/upload-artifact@v4
+        with:
+          name: nupkg-${{ steps.surum.outputs.surum }}
+          path: nupkg/*.nupkg
+          if-no-files-found: error

@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Ortak kutuphane.
+    TargetFrameworks, Version ve diger ortak ayarlar bir ust
+    klasordeki Directory.Build.props icinde duruyor.
+    Burada sadece bu projeye ozel paket bilgileri var.
+  -->
+
+  <PropertyGroup>
+    <PackageId>Sirket.Ortak</PackageId>
+    <Description>A ve B uygulamalarinin ortak kullandigi hesaplama fonksiyonlari (Topla, Cikar, Carp, Bol) ve modeller.</Description>
+    <PackageTags>ortak;kutuphane;hesaplama</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+
+    <!--
+      GitHub Packages'a yayinlayacaksan asagidaki satirin yorumunu kaldir
+      ve KULLANICI_ADIN kismini kendi hesabinla degistir. Bu sayede paket,
+      GitHub'da repo sayfasina bagli gorunur.
+    -->
+    <!-- <RepositoryUrl>https://github.com/KULLANICI_ADIN/Sirket.Ortak</RepositoryUrl> -->
+
+    <!--
+      Bu surumde NE DEGISTIGINI yazdigin alan. Description paketin ne
+      oldugunu anlatir ve pek degismez; bu ise her surumde degisir.
+      Visual Studio ikisini ayri ayri gosterir.
+    -->
+    <!-- <PackageReleaseNotes>1.2.0: Bol fonksiyonu eklendi.</PackageReleaseNotes> -->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+</Project>

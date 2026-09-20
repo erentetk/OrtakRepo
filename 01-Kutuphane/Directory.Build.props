@@ -1,0 +1,58 @@
+<Project>
+
+  <!--
+    Bu dosya, altindaki BUTUN projelere otomatik uygulanir.
+    Ortak ayarlari tek yerden yonetmek icin burada tutuyoruz.
+  -->
+
+  <PropertyGroup>
+
+    <!-- ========================================================
+         TABAN TFM
+         ========================================================
+         Kural: en ESKI tuketicine gore belirlenir.
+         Bugun .NET 5 projelerin oldugu icin taban net5.0.
+
+         .NET 10'a gecis tamamlaninca yapacagin tek sey:
+         asagidaki satirdan "net5.0;" kismini silmek.
+         Bu bir BREAKING CHANGE'dir -> paket surumunu 2.0.0 yap.
+    -->
+    <TargetFrameworks>net5.0;net10.0</TargetFrameworks>
+
+    <!-- net5.0 destek disi oldugu icin SDK NETSDK1138 uyarisi veriyor.
+         Bunu bilerek yaptigimiz icin uyariyi kapatiyoruz. -->
+    <CheckEolTargetFramework>false</CheckEolTargetFramework>
+
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+
+    <!-- DIKKAT: ImplicitUsings'i ACMA.
+         net6.0+ ozelligi; coklu hedeflemede net5.0 derlemesi
+         "namespace bulunamadi" hatalariyla patlar.
+         Bu yuzden kutuphanede using'leri acikca yaziyoruz. -->
+
+    <!-- ========================================================
+         PAKET SURUMU  ::  her pack oncesi BURAYI artir
+         ========================================================
+         Ayni surumu tekrar paketlersen tuketici taraf NuGet
+         cache'inden eski dll'i kullanmaya devam eder ve
+         "ama ben duzelttim" derdine dusersin.
+    -->
+    <Version>1.2.0</Version>
+    <!-- ======================================================== -->
+
+    <Authors>Eren Tetik</Authors>
+    <Company>Profen</Company>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+
+    <!-- PDB'yi dll'in icine gomer. Boylece yerel feed kullanirken
+         tuketici projeden F11 ile kutuphane koduna adim adim
+         girebilirsin; ayri bir sembol sunucusu gerekmez. -->
+    <DebugType>embedded</DebugType>
+    <EmbedAllSources>true</EmbedAllSources>
+
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+  </PropertyGroup>
+
+</Project>
