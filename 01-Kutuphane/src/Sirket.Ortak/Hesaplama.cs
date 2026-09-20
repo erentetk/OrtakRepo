@@ -17,5 +17,7 @@ namespace Sirket.Ortak
          /// <summary>(1.2.0 ile eklendi)</summary>
         public static double Bol(double a, double b) => a / b;
 
+        /// <summary>(1.3.0 ile eklendi)</summary>
+        public static double Yuzde(double sayi, double yuzde) => sayi * yuzde / 100;
     }
 }
