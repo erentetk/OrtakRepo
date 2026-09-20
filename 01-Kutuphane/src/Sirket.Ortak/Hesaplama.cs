@@ -20,5 +20,8 @@ namespace Sirket.Ortak
 
         /// <summary>(1.3.0 ile eklendi)</summary>
         public static double Yuzde(double sayi, double yuzde) => sayi * yuzde / 100;
+
+        /// <summary>(1.4.0 ile eklendi)</summary>
+        public static double Us(double taban, double kuvvet) => Math.Pow(taban, kuvvet);
     }
 }
